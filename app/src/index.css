@@ -1,1 +1,40 @@
-:root {}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Core */
+body {
+  background: #f5f5f5;
+}
+.wrap {
+  margin-top: 89.9px;
+}
+.logo {
+  height: 65px;
+  width: auto;
+
+  img {
+    width: auto;
+    height: 100%
+  }
+}
+
+
+/* Buttons */
+.btn {
+  @apply inline-block uppercase font-bold text-xs tracking-widest rounded-md text-white px-8 py-4;
+
+  &.primary {
+    background: rgb(80,224,195);
+    background: linear-gradient(209deg, rgba(80,224,195,1) 0%, rgba(72,157,221,1) 100%);
+  }
+}
+
+
+header {
+  @apply py-4 border-b border-zinc-300 w-full fixed top-0 left-0;
+  background: #f5f5f5;
+  .btn {
+    box-shadow: 0px 0px 20px 3px rgba(72,157,221,0.3);
+  }
+}
