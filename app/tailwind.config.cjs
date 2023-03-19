@@ -15,8 +15,11 @@ module.exports = {
           md: '728px',
           lg: '984px',
           xl: '1240px',
-        },
+        }
       },
+      fontFamily: {
+        'sans': ['Inter', 'sans-serif'],
+      }
     },
   },
   plugins: [],

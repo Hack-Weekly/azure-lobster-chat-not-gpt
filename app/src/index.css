@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 /* Core */
+:root {
+  @apply font-sans;
+}
 body {
   background: #f5f5f5;
 }
@@ -10,7 +13,7 @@ body {
   margin-top: 89.9px;
 }
 .logo {
-  height: 65px;
+  height: 60px;
   width: auto;
 
   img {
@@ -22,19 +25,56 @@ body {
 
 /* Buttons */
 .btn {
-  @apply inline-block uppercase font-bold text-xs tracking-widest rounded-md text-white px-8 py-4;
+  @apply inline-block uppercase font-bold text-xs tracking-widest rounded-md px-8 py-5 transition-all;
 
   &.primary {
+    @apply text-white;
     background: rgb(80,224,195);
     background: linear-gradient(209deg, rgba(80,224,195,1) 0%, rgba(72,157,221,1) 100%);
+    box-shadow: 0px 0px 20px 3px rgba(72,157,221,0.3);
+    &:hover {
+      @apply mb-1;
+    }
+  }
+  &.secondary {
+    @apply border-2 border-gray-700 text-gray-800;
+    &:hover {
+      @apply bg-gray-700 text-white;
+    }
   }
 }
 
-
+/* Navigation */
 header {
-  @apply py-4 border-b border-zinc-300 w-full fixed top-0 left-0;
-  background: #f5f5f5;
-  .btn {
-    box-shadow: 0px 0px 20px 3px rgba(72,157,221,0.3);
+  @apply fixed top-0 left-0 z-50 py-4 border-b border-zinc-200 w-full;
+  background: rgba(245,245,245,0.9);
+}
+
+/* Preview */
+.preview {
+  background: rgb(7,8,21);
+  background: linear-gradient(43deg, rgba(7,8,21,1) 0%, rgba(0,1,4,1) 100%);
+
+  .preview-img {
+    @apply transition-all relative -top-12;
+    transform: rotate(1.5deg);
+
+    img {
+      @apply w-full h-auto shadow-2xl rounded-lg relative z-10;
+    }
+
+    &::before {
+      @apply transition-all absolute rounded-lg w-full h-full inset-0 z-0;
+      content: '';
+      background: linear-gradient(209deg, rgba(80,224,195,1) 0%, rgba(72,157,221,1) 100%);
+      transform: rotate(-3deg);
+    }
+
+    &:hover {
+      transform: rotate(0deg);
+      &::before {
+        transform: rotate(0deg);
+      }
+    }
   }
 }
