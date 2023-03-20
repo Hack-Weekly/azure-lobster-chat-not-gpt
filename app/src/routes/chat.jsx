@@ -1,10 +1,9 @@
-import Navigation from "./components/navigation";
+import ChatInterface from "./components/chatInterface";
 
 export default function Index() {
   return (
     <>
-      <Navigation />
-      chat here
+      <ChatInterface />
     </>
   );
 }
