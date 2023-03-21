@@ -1,8 +1,14 @@
+import { HashRouter, Route, Routes } from "react-router-dom";
+import { Landing } from "./pages/Landing";
+
 function App() {
   return (
     <div className="App">
-      <h1>Hello lobsters</h1>
-      <a href="https://reactjs.org" target="_blank"></a>
+      <HashRouter>
+        <Routes>
+          <Route element={<Landing />} path="/" />
+        </Routes>
+      </HashRouter>
     </div>
   );
 }
