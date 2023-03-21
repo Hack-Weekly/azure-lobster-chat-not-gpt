@@ -1,14 +1,24 @@
-import { Request, Response } from "express";
+import { Application, Request, Response } from "express";
+import { createServer } from "http";
 import { Socket } from "socket.io";
+const { Server } = require("socket.io");
+
+const EXPRESS_PORT = 5000;
+const SOCKET_PORT = 5500;
 
 const express = require("express");
-const app = express();
-const http = require("http");
-const server = http.createServer(app);
-const { Server } = require("socket.io");
-const io = new Server(server);
+const cors = require("cors");
+const app: Application = express();
 
-const PORT = 3000;
+app.use(cors());
+
+const http = createServer(app);
+const io = new Server(http, {
+  cors: {
+    origin: "*", // change when in dev or prod server
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  },
+});
 
 app.get("/", (req: Request, res: Response) => {
   res.send("<h1>Hello lobsters</h1>");
@@ -16,8 +26,16 @@ app.get("/", (req: Request, res: Response) => {
 
 io.on("connection", (socket: Socket) => {
   console.log("a user connected");
+
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
+  });
 });
 
-server.listen(PORT, () => {
-  console.log(`server started on port ${PORT}`);
+http.listen(SOCKET_PORT, () => {
+  console.log(`server started on port ${SOCKET_PORT}`);
+});
+
+app.listen(EXPRESS_PORT, () => {
+  console.log(`server started on port ${EXPRESS_PORT}`);
 });
