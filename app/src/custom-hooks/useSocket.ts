@@ -8,6 +8,19 @@ export default function useSocket() {
 
   useEffect(() => {
     socketRef.current = io(URL);
+
+    socketRef.current.on("new_connection", (data: string) => {
+      console.log(data);
+    });
+
+    socketRef.current.on("create_room", (data: string) => {
+      console.log(data);
+    });
+
+    socketRef.current.on("leave_room", (data: string) => {
+      console.log(data);
+    });
+
     setSocket(socketRef.current);
 
     return () => {
